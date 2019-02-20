@@ -77,7 +77,7 @@ The training data can be downloaded from the google drive:
 
 
 In order to add more training data I used the following methods:
-* Left and right cameras. Each sample received from the simulator consist of 3 images from different camera positions: left, center and right. So I used left and right cameras images after applying steering angle correction of 0.2. This will in crease amount of training data by a factor of 3
+* Left and right cameras. Each sample received from the simulator consist of 3 images from different camera positions: left, center and right. So I used images from left and right camera after applying steering angle correction of 0.2. This will in crease amount of training data by a factor of 3
 
 * Horizontal flip. I flipped every center image and changed the sign of the steering angle
 
