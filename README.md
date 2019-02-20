@@ -66,6 +66,9 @@ Validation samples:  5870
 
 The training data can be downloaded from the google drive:
 
+[Track 1](https://drive.google.com/open?id=1ygSNh7AXM2q21QsOD7qSfio9EtIbcuC9)
+
+[Track 2](https://drive.google.com/open?id=1eEzf_kWU59aoMeh94nVc02Ar5KncF2iq)
 
 
 In order to add more training data I used the following methods:
