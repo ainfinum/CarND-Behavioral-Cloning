@@ -18,6 +18,8 @@ The goals / steps of this project are the following:
 [image6]: ./images/preprocessed.jpg "Cropped and resized images"
 [image7]: ./images/flipped.jpg "Flipped Image"
 [image8]: ./images/conv-netw.png  "Model architecture"
+
+[video1]: ./track1.mp4 "Video track 1"
  
 ### Files Submitted & Code Quality
 
@@ -31,11 +33,11 @@ My project includes the following files:
 
 
 ## 2. Dataset
-The provided driving simulator had two different tracks. The first track is the road on a plain surface, but the second track is more challenging with very sharp turns that can throw the car off the track. The simulator outputs steering angle and corresponding images 160x320x3 pixels from 3 different camera viewpoints as center, left and right.
+The provided driving simulator had two different tracks. The first track is the curving road on a flat surface, but the second track is more challenging with very sharp bends that can throw the car off the track. The simulator outputs steering angle and corresponding images 160x320x3 pixels from 3 different camera viewpoints - center, left and right.
  
 ### 2.1 Data collection
-A training data for the project have been obtained by manually driving the car in the driving simulator around the tracks. It contains data collected driving in the middle of the road for several laps 
-and "recovery" mode - moving the car to the side of the road and drive it back to the center of the road. Also I collected the data driving counter-clockwise and I additionally recorded the most hard parts of the tracks.  
+Training data for the project have been obtained by manually driving the car in the driving simulator around the tracks. It contains data collected driving in the middle of the road for several laps 
+and "recovery" mode - moving the car to the side of the road and drive it back to the center of the road. Also, I collected the data driving counter-clockwise and I recorded additionally the hardest turns of the tracks.  
 
 Left, center and right cameras
 ![alt text][image1]
@@ -44,7 +46,7 @@ Left, center and right cameras
 Recovery mode
 ![alt text][image3]
 
-As can be seen from the bar chart below the collected data was unbalanced with a spike near the center, so I decided to remove some data to balance the training set.
+As can be seen from the bar chart below the collected data was unbalanced with the spike near the center, so I decided to remove some data to balance the training set (remove.py line 129).
 
 ![alt text][image4]
 
@@ -56,16 +58,17 @@ Balanced training set
 
 After collection and balancing the data I ended up with the following set:
 
-Training samples from first track: 28506
-Training samples from second track: 30194
+Training samples from the first track: 28506
+Training samples from the second track: 30194
 Total training samples from 2 tracks: 58700
 Training samples: 52830 
 Validation samples:  5870
 
-The training data can be downloaded from google drive:
+The training data can be downloaded from the google drive:
 
 
-In order to add more training sampoles I used the following methods:
+
+In order to add more training data I used the following methods:
 * Left and right cameras. Each sample received from the simulator consist of 3 images from different camera positions: left, center and right. So I used left and right cameras images after applying steering angle correction of 0.2. This will in crease amount of training data by a factor of 3
 
 * Horizontal flip. I flipped every center image and changed the sign of the steering angle
@@ -74,7 +77,7 @@ In order to add more training sampoles I used the following methods:
 
 ### 2.3 Data preprocessing
 
-* Cropping images by 50 pixels from the top and and 20 pixels from the bottom of the image and resizing to a shape of 192 by 54.
+* Crop images by 50 pixels from the top and 20 pixels from the bottom of the image and resize to a shape of 192 by 54.
 
 ![alt text][image6]
 
@@ -84,12 +87,12 @@ In order to add more training sampoles I used the following methods:
 
 ### 3.1. Solution Design Approach
 
-My first idea was to use InceptionV3 network with pretrained weights. I removed top and bottom layers and trained it several epochs. I didn't get a good result from the first try and considering that the weights of InceptionV3 network is a huge file I desided to search for other model architecture that can be used for this task. I found Nvidea paper and created similar simplified model architecture with 4 convolutional layers and 3 fully connected layers with dropout on 2 out of 3 dense layers to prevent overfitting. 
+My first idea was to use InceptionV3 network with pretrained weights. I removed the top and bottom layers and trained it for several epochs. I didn't get a good result from the first try and considering that the weights of InceptionV3 is a huge file I decided to search for other model architecture that can be used for this task. I found [Nvidia](https://github.com/user/repo/blob/branch/other_file.md) paper and created similar simplified model architecture with 4 convolutional layers and 3 fully connected layers with dropout on 2 out of 3 dense layers to prevent overfitting. 
  
 I split my data set into a training and validation set. I found that the model had a similar mean squared error on the training set on the validation set. It shows me that my model working fine so I trained it for 10 epochs.
 
 The next step was to run the simulator to test the model driving around track one. The car fell off the track in one spot so I collected more data to improve the driving behavior.
-After training the model for 15 epochs on the data collected from 2 track the model were able able to drive autonomously around the both tracks without leaving the road.
+After training the model for 15 epochs on the data collected from 2 track the model were able to drive autonomously around both tracks without leaving the road.
 
 ### 3.2. Final Model Architecture
 
@@ -100,45 +103,30 @@ Here is a visualization of the architecture:
 ![alt text][image8]
 
 
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
-lambda_1 (Lambda)            (None, 54, 192, 3)        0         
-_________________________________________________________________
-conv2d_1 (Conv2D)            (None, 52, 190, 24)       672       
-_________________________________________________________________
-max_pooling2d_1 (MaxPooling2 (None, 26, 95, 24)        0         
-_________________________________________________________________
-conv2d_2 (Conv2D)            (None, 24, 93, 36)        7812      
-_________________________________________________________________
-max_pooling2d_2 (MaxPooling2 (None, 12, 46, 36)        0         
-_________________________________________________________________
-conv2d_3 (Conv2D)            (None, 10, 44, 48)        15600     
-_________________________________________________________________
-max_pooling2d_3 (MaxPooling2 (None, 5, 22, 48)         0         
-_________________________________________________________________
-conv2d_4 (Conv2D)            (None, 3, 20, 64)         27712     
-_________________________________________________________________
-max_pooling2d_4 (MaxPooling2 (None, 1, 10, 64)         0         
-_________________________________________________________________
-flatten_1 (Flatten)          (None, 640)               0         
-_________________________________________________________________
-dense_1 (Dense)              (None, 256)               164096    
-_________________________________________________________________
-dropout_1 (Dropout)          (None, 256)               0         
-_________________________________________________________________
-dense_2 (Dense)              (None, 50)                12850     
-_________________________________________________________________
-dropout_2 (Dropout)          (None, 50)                0         
-_________________________________________________________________
-dense_3 (Dense)              (None, 10)                510       
-_________________________________________________________________
-dense_4 (Dense)              (None, 1)                 11        
+ 
+|Layer (type)                 |Output Shape            |Param#|   
+|----------------------------:|:----------------------:|:----:|
+|lambda_1 (Lambda)            |(None, 54, 192, 3)      |0     |      
+|conv2d_1 (Conv2D)            |(None, 52, 190, 24)     |672   |    
+|max_pooling2d_1 (MaxPooling2)|(None, 26, 95, 24)      |0     |     
+|conv2d_2 (Conv2D)            |(None, 24, 93, 36)      |7812  |     
+|max_pooling2d_2 (MaxPooling2)|(None, 12, 46, 36)      |0     |     
+|conv2d_3 (Conv2D)            |(None, 10, 44, 48)      |15600 |    
+|max_pooling2d_3 (MaxPooling2)|(None, 5, 22, 48)       |0     |    
+|conv2d_4 (Conv2D)            |(None, 3, 20, 64)       |27712 |    
+|max_pooling2d_4 (MaxPooling2)|(None, 1, 10, 64)       |0     |    
+|flatten_1 (Flatten)          |(None, 640)             |0     |    
+|dense_1 (Dense)              |(None, 256)             |164096|    
+|dropout_1 (Dropout)          |(None, 256)             |0     |    
+|dense_2 (Dense)              |(None, 50)              |12850 |     
+|dropout_2 (Dropout)          |(None, 50)              |0     |      
+|dense_3 (Dense)              |(None, 10)              |510   |       
+|dense_4 (Dense)              |(None, 1)               |11    |        
 =================================================================
 Total params: 229,263
 Trainable params: 229,263
 Non-trainable params: 0
-_________________________________________________________________
+
 
 
 
@@ -148,7 +136,7 @@ I finally randomly shuffled the 58700 training samples from 2 tracks and put 10%
 
 52830 training samples were used for training the model. I trained the model for 15 epochs to get low mean squared error. The adam optimizer was used so that manually training the learning rate wasn't necessary.
 
-I collected a good traing set and considering that I will have a data from the left and right cameras and flipped image it will use a lot of GPU/CPU memory. In order to avoid isssues with computer memory I created a generator() (model.py line 24) that generate batches for Keras fit_generator() function.  
+Considering that I collected a good amount of training data and I will have additional images from the left and right cameras and flipped image it will use a lot of GPU/CPU memory. In order to avoid issues with computer memory, I created a generator() (model.py line 24) that generate batches for Keras fit_generator() function.  
 
 
 6764/6763 [==============================] - 239s - loss: 0.0491 - mean_squared_error: 0.0491 - mean_absolute_error: 0.1668 - val_loss: 0.0380 - val_mean_squared_error: 0.0380 - val_mean_absolute_error: 0.1456
@@ -186,15 +174,16 @@ Epoch 15/15
 
 ## 4. Result
 
-The model was tested by running it through the simulator and the car can be driven autonomously around the both tracks.
-I think the result that model with CNN architecture produce is pretty impressive. The model was trained just in 60 minutes and it's can drive a car on quite challengind road.
+The model was tested by running it through the simulator and the car can be driven autonomously around both tracks.
+I think the result that model with CNN architecture produce is pretty impressive. The model was trained just in 60 minutes and it's can drive a car on a quite challenging road.
 
-Video from the track 1
+Video from track 1
 
-[![Track 1 video](https://img.youtube.com/vi/nmmvm4ZCuO0/maxresdefault.jpg)](https://youtu.be/nmmvm4ZCuO0)
+[Track 1 video](./output_images/project_output_ready.mp4)
+[![Track 1 youtube video]](https://youtu.be/nmmvm4ZCuO0)
 
-Video from the track 2
+Video from track 2
 
 
-This result gives a rough idea of what these model are capable of. I've tried to run the model on the first track with 30 MPH but the car feel off the road. 
-It would be nice to test it in real world so I'm plannig to use this model to control RC car with a camera and Raspberry Pi 3 B+ on board.
+This result gives a rough idea of what this model is capable of. I've tried to run the model on the first track with the speed of 30 MPH but the car fell off the road. 
+It would be nice to test it in the real world so I'm planning to use this model to control RC car with a camera and Raspberry Pi 3 B+ on board.

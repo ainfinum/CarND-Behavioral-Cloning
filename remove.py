@@ -22,16 +22,6 @@ df = pd.read_csv('./out2rev/driving_log.csv', header=None)
 
 counted_samples = np.unique(df.loc[:, 3], return_counts=True)
 
-# zero = 0
-# angles = []
-# for row in train_samples:
-#     #angles.append(np.round(float(row[3]), 20))
-#     angles.append(float(row[3]))
-#     if float(row[3]) == 0.0:
-#         zero = zero + 1
-#         if zero > 3000:
-#             s = 0
-
 
 print('Index:', len(counted_samples[0]))
 max_ind = np.argmax(counted_samples[1])
@@ -51,11 +41,10 @@ updated = pd.DataFrame()
 total = 0
 
 for i in range(0, len(counted_samples[0])):
-    df_range = df[df[3] == counted_samples[0][i]]
-    range_n = min(500, df_range.shape[0])
-    total = total + range_n
-    #print(counted_samples[0][i], ' added: ', range_n)
-    updated = pd.concat([updated, df_range.sample(range_n)])
+    df_temp = df[df[3] == counted_samples[0][i]]
+    min_set = min(500, df_temp.shape[0])
+    total = total + min_set
+    updated = pd.concat([updated, df_temp.sample(min_set)])
 
 
 print('Total', total)
@@ -74,40 +63,3 @@ plt.bar(counted_bal[0], counted_bal[1],  color='b', width=0.005)
 plt.ylabel('Counts', fontsize=15)
 plt.title('Updated training examples')
 plt.savefig('counted_bal.png')
-
-# ------------- Copying files
-ind = 0
-
-
-# for index, row in updated.iterrows():
-
-#     file1 = row[0].split('/')[-1]
-#     file2 = row[1].split('/')[-1]
-#     file3 = row[2].split('/')[-1]
-
-#     if os.path.isfile(current_path+file1):
-#         shutil.move(current_path + file1, new_path + file1)
-#         ind = ind + 1
-
-#     else:
-#         print('file not found')
-
-#     if os.path.isfile(current_path+file2):
-#         shutil.move(current_path + file2, new_path + file2)
-#         ind = ind + 1
-
-#     else:
-#         print('file not found')
-
-#     if os.path.isfile(current_path+file3):
-#         shutil.move(current_path + file3, new_path + file3)
-#         ind = ind + 1
-
-#     else:
-#         print('file not found')
-
-#     # if ind > 20:
-#      #   quit()
-
-
-# print('Copied:', ind)

@@ -22,7 +22,8 @@ sio = socketio.Server()
 app = Flask(__name__)
 model = None
 prev_image_array = None
- 
+
+
 class SimplePIController:
     def __init__(self, Kp, Ki):
         self.Kp = Kp
