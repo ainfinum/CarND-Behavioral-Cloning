@@ -95,7 +95,7 @@ In order to add more training data I used the following methods:
 
 ### 3.1. Solution Design Approach
 
-My first idea was to use InceptionV3 network with pretrained weights. I removed the top and bottom layers and trained it for several epochs. I didn't get a good result from the first try and considering that the weights of InceptionV3 is a huge file I decided to search for other model architecture that can be used for this task. I found [Nvidia](https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) paper and created similar simplified model architecture with 4 convolutional layers and 3 fully connected layers with dropout on 2 out of 3 dense layers to prevent overfitting. 
+My first idea was to use InceptionV3 network with pretrained weights. I removed the top and bottom layers and trained it for several epochs. I didn't get a good result from the first try and considering that the weights of InceptionV3 is a huge file I decided to search for other model architecture that can be used for this task. I found [Nvidia](https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) document and created similar simplified model architecture with 4 convolutional layers and 3 fully connected layers with dropout on 2 out of 3 dense layers to prevent overfitting. 
  
 I split my data set into a training and validation set. I found that the model had a similar mean squared error on the training set on the validation set. It shows me that my model working fine so I trained it for 10 epochs.
 
