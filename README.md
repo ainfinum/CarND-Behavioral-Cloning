@@ -98,7 +98,7 @@ In order to add more training data I used the following methods:
 
 My first idea was to use InceptionV3 network with pretrained weights. I removed the top and bottom layers and trained it for several epochs. I didn't get a good result from the first try and considering that the weights of InceptionV3 is a huge file I decided to search for other model architecture that can be used for this task. I found [Nvidia](https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) document and created similar simplified model architecture with 4 convolutional layers and 3 fully connected layers with dropout on 2 out of 3 dense layers to prevent overfitting. 
  
-I split my data set into a training and validation set. I found that the model had a similar mean squared error on the training set on the validation set. It shows me that my model working fine so I trained it for 10 epochs.
+I split my data set into a training and validation set. I found that the model had a similar mean squared error on the training and on the validation set. It shows me that my model working fine so I trained it for 10 epochs.
 
 The next step was to run the simulator to test the model driving around track one. The car fell off the track in one spot so I collected more data to improve the driving behavior.
 After training the model for 15 epochs on the data collected from 2 track the model were able to drive autonomously around both tracks without leaving the road.
