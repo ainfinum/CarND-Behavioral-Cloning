@@ -29,7 +29,7 @@ My project includes the following files:
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
 * README.md a report summarizing the results
-* track1.mp4, track2.mp4 - redult videos for track #1 and #2 
+* track1.mp4, track2.mp4 - output videos for track #1 and #2 
 
 
 ## 2. Dataset
