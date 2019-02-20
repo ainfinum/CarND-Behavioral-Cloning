@@ -121,11 +121,11 @@ Here is a visualization of the architecture:
 |dense_2 (Dense)              |(None, 50)              |12850 |     
 |dropout_2 (Dropout)          |(None, 50)              |0     |      
 |dense_3 (Dense)              |(None, 10)              |510   |       
-|dense_4 (Dense)              |(None, 1)               |11    |        
-=================================================================
-Total params: 229,263
-Trainable params: 229,263
-Non-trainable params: 0
+|dense_4 (Dense)              |(None, 1)               |11    |
+|----------------------------:|:----------------------:|:----:|      
+|Total params:                |229,263                 |      |
+|Trainable params:            |229,263                 |      |
+|Non-trainable params:        |0                       |      |
 
 
 
@@ -175,15 +175,19 @@ Epoch 15/15
 ## 4. Result
 
 The model was tested by running it through the simulator and the car can be driven autonomously around both tracks.
-I think the result that model with CNN architecture produce is pretty impressive. The model was trained just in 60 minutes and it's can drive a car on a quite challenging road.
+I think the result that model with CNN architecture produce is pretty impressive. The model was trained just in 60 minutes and it can drive a car on a quite challenging road.
 
 Video from track 1
 
-[Track 1 video](./output_images/project_output_ready.mp4)
-[![Track 1 youtube video]](https://youtu.be/nmmvm4ZCuO0)
+[![Track 1 youtube video](https://img.youtube.com/vi/nmmvm4ZCuO0/default.jpg)](https://youtu.be/nmmvm4ZCuO0)
+[Track 1 video, github](./track1.mp4)
 
 Video from track 2
 
+[![Track 1 youtube video](https://img.youtube.com/vi/TGKVMtZpG2Y/default.jpg)](https://youtu.be/TGKVMtZpG2Y)
+[Track 2 video, github](./track1.mp4)
 
-This result gives a rough idea of what this model is capable of. I've tried to run the model on the first track with the speed of 30 MPH but the car fell off the road. 
+This result gives a rough idea of what this model is capable of. I've tried to run the model on the first track with the speed of 30 MPH but the car fell off the road.
+It looks that for high speed I need to gather more training data.
+
 It would be nice to test it in the real world so I'm planning to use this model to control RC car with a camera and Raspberry Pi 3 B+ on board.
