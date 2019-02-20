@@ -20,8 +20,7 @@ The goals / steps of this project are the following:
 [image8]: ./images/conv-netw.png  "Model architecture"
 
 [video1]: ./track1.mp4 "Video track 1"
- 
-### Files Submitted & Code Quality
+
 
 ## 1. Project files
 
@@ -122,7 +121,7 @@ Here is a visualization of the architecture:
 |dropout_2 (Dropout)          |(None, 50)              |0     |      
 |dense_3 (Dense)              |(None, 10)              |510   |       
 |dense_4 (Dense)              |(None, 1)               |11    |
-|----------------------------:|:----------------------:|:----:|      
+|                             |                        |      |      
 |Total params:                |229,263                 |      |
 |Trainable params:            |229,263                 |      |
 |Non-trainable params:        |0                       |      |
@@ -180,11 +179,13 @@ I think the result that model with CNN architecture produce is pretty impressive
 Video from track 1
 
 [![Track 1 youtube video](https://img.youtube.com/vi/nmmvm4ZCuO0/default.jpg)](https://youtu.be/nmmvm4ZCuO0)
+
 [Track 1 video, github](./track1.mp4)
 
 Video from track 2
 
 [![Track 1 youtube video](https://img.youtube.com/vi/TGKVMtZpG2Y/default.jpg)](https://youtu.be/TGKVMtZpG2Y)
+
 [Track 2 video, github](./track1.mp4)
 
 This result gives a rough idea of what this model is capable of. I've tried to run the model on the first track with the speed of 30 MPH but the car fell off the road.
