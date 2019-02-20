@@ -18,6 +18,7 @@ The goals / steps of this project are the following:
 [image6]: ./images/preprocessed.jpg "Cropped and resized images"
 [image7]: ./images/flipped.jpg "Flipped Image"
 [image8]: ./images/conv-netw.png  "Model architecture"
+[image9]: ./images/mse.png "Mean squared error"
 
 [video1]: ./track1.mp4 "Video track 1"
 
@@ -177,6 +178,10 @@ Epoch 14/15
 Epoch 15/15
 6764/6763 [==============================] - 235s - loss: 0.0210 - mean_squared_error: 0.0210 - mean_absolute_error: 0.1082 - val_loss: 0.0214 - val_mean_squared_error: 0.0214 - val_mean_absolute_error: 0.1073
 
+
+Mean squared error for training and validation provided on the chart below:
+
+![alt text][image9]
  
 
 
