@@ -16,12 +16,18 @@ from keras.models import load_model
 import h5py
 from keras import __version__ as keras_version
 import cv2
-from model import cropandresize
+
 
 sio = socketio.Server()
 app = Flask(__name__)
 model = None
 prev_image_array = None
+
+
+def cropandresize(image):
+    # Crop and resize image
+    image = cv2.resize(image[50:140:], (192, 54))
+    return image
 
 
 class SimplePIController:

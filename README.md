@@ -29,6 +29,7 @@ My project includes the following files:
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
 * README.md a report summarizing the results
+* track1.mp4, track2.mp4 - redult videos for track #1 and #2 
 
 
 ## 2. Dataset
@@ -174,7 +175,7 @@ Epoch 15/15
 ## 4. Result
 
 The model was tested by running it through the simulator and the car can be driven autonomously around both tracks.
-I think the result that model with CNN architecture produce is pretty impressive. The model was trained just in 60 minutes and it can drive a car on a quite challenging road.
+I think the result of the CNN model is pretty impressive. The model was trained less than 60 minutes and it can drive a car on a quite challenging road.
 
 Video from track 1
 
@@ -189,6 +190,6 @@ Video from track 2
 [Track 2 video, github](./track1.mp4)
 
 This result gives a rough idea of what this model is capable of. I've tried to run the model on the first track with the speed of 30 MPH but the car fell off the road.
-It looks that for high speed I need to gather more training data.
+Perhaps for high speed the model should be trained more on data collected from the track 1.
 
 It would be nice to test it in the real world so I'm planning to use this model to control RC car with a camera and Raspberry Pi 3 B+ on board.
