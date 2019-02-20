@@ -33,11 +33,11 @@ My project includes the following files:
 
 
 ## 2. Dataset
-The provided driving simulator had two different tracks. The first track is the curving road on a flat surface, but the second track is more challenging with very sharp bends that can throw the car off the track. The simulator outputs steering angle and corresponding images 160x320x3 pixels from 3 different camera viewpoints - center, left and right.
+The provided driving simulator has two different tracks. The first track is the curving road on a flat surface, but the second track is more challenging with very sharp bends that can throw the car off the track. The simulator outputs steering angle and corresponding images 160x320x3 pixels from 3 different camera viewpoints - center, left and right.
  
 ### 2.1 Data collection
-Training data for the project have been obtained by manually driving the car in the driving simulator around the tracks. It contains data collected driving in the middle of the road for several laps 
-and "recovery" mode - moving the car to the side of the road and drive it back to the center of the road. Also, I collected the data driving counter-clockwise and I recorded additionally the hardest turns of the tracks.  
+Training data for the project have been obtained by manually driving the car in the simulator around the tracks. It contains data collected driving in the middle of the road for several laps 
+and in "recovery" mode - moving the car to the side of the road and drive it back to the center of the road. Also, I collected the data driving counter-clockwise and I recorded additionally the hardest turns of the tracks.  
 
 Left, center and right cameras
 ![alt text][image1]
@@ -59,10 +59,15 @@ Balanced training set
 After collection and balancing the data I ended up with the following set:
 
 Training samples from the first track: 28506
+
 Training samples from the second track: 30194
+
 Total training samples from 2 tracks: 58700
+
 Training samples: 52830 
+
 Validation samples:  5870
+
 
 The training data can be downloaded from the google drive:
 
