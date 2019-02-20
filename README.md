@@ -179,7 +179,7 @@ Epoch 15/15
 6764/6763 [==============================] - 235s - loss: 0.0210 - mean_squared_error: 0.0210 - mean_absolute_error: 0.1082 - val_loss: 0.0214 - val_mean_squared_error: 0.0214 - val_mean_absolute_error: 0.1073
 
 
-Mean squared error for training and validation provided on the chart below:
+Training and validation mean squared error chart:
 
 ![alt text][image9]
  
